@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# Chat BES - Aplicação de Bate-Papo em Tempo Real
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📝 Descrição
 
-## Available Scripts
+Este projeto é uma aplicação de chat em tempo real que permite que múltiplos usuários se comuniquem em uma sala de bate-papo compartilhada. Os usuários primeiro inserem um nome de usuário para se identificarem e, em seguida, podem enviar e receber mensagens instantaneamente.
 
-In the project directory, you can run:
+A aplicação utiliza uma arquitetura cliente-servidor, com um backend em Python (usando Flask e Flask-SocketIO) e um frontend em React. A comunicação bidirecional é estabelecida através de WebSockets.
 
-### `npm start`
+## 🎥 Vídeo de Apresentação
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Para uma demonstração visual do projeto e uma explicação detalhada, assista ao nosso vídeo no YouTube:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[https://www.youtube.com/watch?v=zNfCO68Jbbc](https://www.youtube.com/watch?v=zNfCO68Jbbc)
 
-### `npm test`
+## ✨ Funcionalidades
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* *Login por Nome de Usuário:* Sistema simples de identificação para entrar no chat.
+* *Comunicação em Tempo Real:* As mensagens são enviadas e recebidas instantaneamente por todos os usuários conectados usando WebSockets.
+* *Interface Distinta:* Mensagens enviadas pelo usuário atual são alinhadas à direita, enquanto as mensagens de outros participantes ficam à esquerda, facilitando a leitura.
+* *Backend Concorrente:* O servidor utiliza eventlet para lidar com múltiplas conexões de clientes de forma assíncrona.
 
-### `npm run build`
+## 🛠️ Tecnologias Utilizadas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### *Backend*
+* *Python*
+* *Flask:* Micro-framework web.
+* *Flask-SocketIO:* Para comunicação WebSocket entre o servidor e os clientes.
+* *Eventlet:* Biblioteca de rede concorrente.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### *Frontend*
+* *React:* Biblioteca para construção da interface de usuário.
+* *Socket.IO Client:* Para estabelecer a conexão WebSocket com o servidor.
+* *CSS:* Para estilização da interface.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📋 Pré-requisitos
 
-### `npm run eject`
+Antes de começar, certifique-se de que você tem os seguintes softwares instalados:
+* Python 3.x
+* Node.js e npm
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🚀 Como Executar o Projeto
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Siga os passos abaixo para executar a aplicação em seu ambiente de desenvolvimento.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 1. Backend (Servidor)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+bash
+# 1. Navegue para a pasta do backend
+cd backend
 
-## Learn More
+# 2. Instale as dependências do Python
+pip install flask flask-socketio eventlet
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 3. Execute o servidor
+python server.py
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+O servidor estará em execução no endereço http://0.0.0.0:5000.
 
-### Code Splitting
+### 2. Frontend (Cliente)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+bash
+# 1. Abra um novo terminal e navegue para a pasta do frontend
+cd frontend
 
-### Analyzing the Bundle Size
+# 2. IMPORTANTE: Configure o IP do servidor
+- Abra o arquivo 'src/App.js' e altere o endereço IP na linha abaixo
+- para o IP da máquina onde o backend está rodando.
+- Para testes locais, você pode usar 'localhost'.
+- const socket = io("http://SEU_IP_AQUI:5000", { ... });
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# 3. Instale as dependências do Node.js
+npm install
 
-### Making a Progressive Web App
+# 4. Inicie a aplicação React
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+A aplicação será aberta em seu navegador no endereço http://localhost:3000.
 
-### Advanced Configuration
+## 📄 Manual do Usuário
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Para instruções mais detalhadas sobre o uso da aplicação, requisitos e estrutura, consulte o arquivo *Chat BES.pdf* incluído neste repositório.
 
-### Deployment
+## 👥 Autores
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Alan Andrade Vasconi de Souza
+* Ana Livia Turazzi
+* Antonio Augusto de Campos
+* Pedro Candido Salvio
